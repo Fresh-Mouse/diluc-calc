@@ -53,37 +53,10 @@ def calc(weapon_atk, weapon_secondary, artifact_main_stats, base_rolls):
 
 
 # wgs r1 atk sands
-# res = calc(607, np.array([0.696, 0, 0, 0]), np.array([0.466, 0, 0.312, 0]), np.array([4, 5, 4, 5]))
-# top = sorted(res, key=lambda x: x[0], reverse=True)[0:100]
+res = calc(607, np.array([0.946, 0, 0, 0]), np.array([0.466, 0, 0.311, 0]), np.array([4, 5, 4, 5]))
+top = sorted(res, key=lambda x: x[0], reverse=True)[0:100]
 # print('WGS R1 atk sands')
 # print('\n'.join(str(i) for i in top))
-
-
-# wgs r1 em sands
-# res = calc(607, np.array([0.696, 0, 0, 0]), np.array([0, 197, 0.312, 0]), np.array([5, 4, 4, 5]))
-# top = sorted(res, key=lambda x: x[0], reverse=True)[0:100]
-# print('WGS R1 em sands')
-# rint('\n'.join(str(i) for i in top))
-
-
-# # wgs r1 atk sands 25% uptime
-res = calc(607, np.array([0.796, 0, 0, 0]), np.array([0.466, 0, 0.312, 0]), np.array([4, 5, 4, 5]))
-top = sorted(res, key=lambda x: x[0], reverse=True)[0:100]
-# print('WGS R1 atk sands 25% uptime')
-# print('\n'.join(str(i) for i in top))
-
-# # wgs r1 em sands 25% uptime
-# res = calc(607, np.array([0.796, 0, 0, 0]), np.array([0, 197, 0.312, 0]), np.array([5, 4, 4, 5]))
-# top = sorted(res, key=lambda x: x[0], reverse=True)[0:100]
-# print('WGS R1 em sands 25% uptime')
-# print('\n'.join(str(i) for i in top))
-
-# # skyward pride no passive atk sands
-# res = calc(674, np.array([0, 0, 0, 0]), np.array([0.466, 0, 0.312, 0]), np.array([4, 5, 4, 5]))
-# top = sorted(res, key=lambda x: x[0], reverse=True)[0:15]
-# print('skyward pride no passive')
-# print('\n'.join(str(i) for i in top))
-
 temp = []
 for dmg, rolls, stats in top:
     rolls = ','.join(f'{i}' for i in rolls)
@@ -92,3 +65,36 @@ for dmg, rolls, stats in top:
 with open('results.csv', 'w') as f:
     f.write('damage,atk%,em,crit%,critdmg,atk,em,crit%,critdmg\n')
     f.writelines(f'{i}\n' for i in temp)
+
+# wgs r1 em sands
+res = calc(607, np.array([0.946, 0, 0, 0]), np.array([0, 197, 0.311, 0]), np.array([5, 4, 4, 5]))
+top = sorted(res, key=lambda x: x[0], reverse=True)[0:100]
+# print('WGS R1 em sands')
+# rint('\n'.join(str(i) for i in top))
+temp = []
+for dmg, rolls, stats in top:
+    rolls = ','.join(f'{i}' for i in rolls)
+    stats = ','.join(f'{i:.2f}' for i in stats)
+    temp.append(f'{dmg:.2f},{rolls},{stats}')
+with open('results2.csv', 'w') as f:
+    f.write('damage,atk%,em,crit%,critdmg,atk,em,crit%,critdmg\n')
+    f.writelines(f'{i}\n' for i in temp)
+
+
+# # wgs r1 atk sands 25% uptime
+# res = calc(607, np.array([0.796, 0, 0, 0]), np.array([0.466, 0, 0.311, 0]), np.array([4, 5, 4, 5]))
+# top = sorted(res, key=lambda x: x[0], reverse=True)[0:100]
+# print('WGS R1 atk sands 25% uptime')
+# print('\n'.join(str(i) for i in top))
+
+# # wgs r1 em sands 25% uptime
+# res = calc(607, np.array([0.796, 0, 0, 0]), np.array([0, 197, 0.311, 0]), np.array([5, 4, 4, 5]))
+# top = sorted(res, key=lambda x: x[0], reverse=True)[0:100]
+# print('WGS R1 em sands 25% uptime')
+# print('\n'.join(str(i) for i in top))
+
+# # skyward pride no passive atk sands
+# res = calc(674, np.array([0, 0, 0, 0]), np.array([0.466, 0, 0.311, 0]), np.array([4, 5, 4, 5]))
+# top = sorted(res, key=lambda x: x[0], reverse=True)[0:15]
+# print('skyward pride no passive')
+# print('\n'.join(str(i) for i in top))
